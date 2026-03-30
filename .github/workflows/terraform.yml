@@ -1,0 +1,14 @@
+name: Terraform
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  terraform-validate:
+    name: terraform-validate
+    uses: karoosoftware/github-actions-workflows/.github/workflows/terraform-module-validate.yml@main
