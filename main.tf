@@ -27,6 +27,15 @@ resource "aws_iam_role" "task" {
   tags = var.tags
 }
 
+# Task role policy
+resource "aws_iam_role_policy" "task" {
+  count = var.task_role_policy_json != null ? 1 : 0
+
+  name   = "${var.task_role_name}-inline-policy"
+  role   = aws_iam_role.task.id
+  policy = var.task_role_policy_json
+}
+
 # Task definition
 resource "aws_ecs_task_definition" "this" {
   family                   = var.family

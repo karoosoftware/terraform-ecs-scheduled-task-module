@@ -70,3 +70,9 @@ variable "task_security_group_name" {
   description = "Name of the security group attached to the ECS task."
   type        = string
 }
+
+variable "task_role_policy_json" {
+  description = "Optional inline IAM policy JSON to attach to the ECS task role."
+  type        = string
+  default     = null
+}
