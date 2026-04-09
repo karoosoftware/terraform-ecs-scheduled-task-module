@@ -76,3 +76,9 @@ variable "task_role_policy_json" {
   type        = string
   default     = null
 }
+
+variable "env_vars" {
+  description = "Environment variables to pass to the container."
+  type        = map(string)
+  default     = {}
+}
