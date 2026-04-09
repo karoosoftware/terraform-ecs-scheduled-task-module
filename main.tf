@@ -56,10 +56,10 @@ resource "aws_ecs_task_definition" "this" {
 
   container_definitions = jsonencode([
     {
-      name      = var.container_name
-      image     = var.image
-      essential = true
-      command   = var.command
+      name        = var.container_name
+      image       = var.image
+      essential   = true
+      command     = var.command
       environment = local.container_environment
 
       logConfiguration = {
