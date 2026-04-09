@@ -1,10 +1,18 @@
+locals {
+  container_environment = [
+    for k, v in var.env_vars : {
+      name  = k
+      value = tostring(v)
+    }
+  ]
+}
+
 resource "aws_cloudwatch_log_group" "this" {
   name              = var.log_group_name
   retention_in_days = var.log_retention_in_days
 
   tags = var.tags
 }
-
 
 # Task role name
 data "aws_iam_policy_document" "task_assume_role" {
@@ -52,6 +60,7 @@ resource "aws_ecs_task_definition" "this" {
       image     = var.image
       essential = true
       command   = var.command
+      environment = local.container_environment
 
       logConfiguration = {
         logDriver = "awslogs"
